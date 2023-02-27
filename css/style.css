@@ -1,0 +1,463 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  #creator {
+    position: relative;
+    height: 4%;
+    background-color: rgb(41, 22, 5);
+    border: solid black 1px;
+    align-self: center;
+    min-width: 40%;
+    box-shadow: 0 0 5px;
+    color: white;
+    text-align: center;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    border-radius: 3px;
+  }
+  #creator > a {
+    text-decoration: none;
+    color: red;
+  }
+  #title-top {
+    font-size: 50px;
+    text-align: center;
+    font-weight: 800;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  }
+  
+  #game-start,
+  #game-over {
+    height: 90%;
+    width: 100%;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    transition: all 0.8s ease-out;
+  }
+  #game-over {
+    display: none;
+  }
+  #game-start.moveout {
+    top: 100%;
+  }
+  #game-over.moveout {
+    display: none;
+  }
+  #game-over.movein {
+    display: unset;
+  }
+  #game-start.movein {
+    transition: all 0.8s ease-out;
+    display: unset;
+    top: 0;
+    opacity: 1;
+  }
+  #gs-pop,
+  #go-pop {
+    border-radius: 70px;
+    border: solid;
+    padding: 30px 20px;
+    height: 40%;
+    width: 75%;
+    position: relative;
+    margin: 30vh auto;
+    background-color: rgb(150, 115, 70);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  #gs-pop-top,
+  #go-pop-top {
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    height: 20%;
+  }
+  #go-pop-top {
+    font-size: 50px;
+  }
+  #gs-pop-down,
+  #go-pop-down {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  #gs-pop-down button {
+    border: solid 1px black;
+    display: block;
+    margin: 0 30px;
+    padding: 0;
+    font-size: 40px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 70px;
+    height: 70px;
+    width: 70px;
+    background-color: rgb(96, 70, 31);
+    color: white;
+    outline: none;
+  }
+  #gs-pop-down button:hover,
+  #go-pop-down button:hover {
+    filter: brightness(120%);
+  }
+  #game-over {
+    z-index: 3;
+  }
+  #go-pop-down button {
+    font-size: 40px;
+    background-color: rgb(96, 70, 31);
+    height: 90px;
+    width: 220px;
+    color: white;
+    border-radius: 10px;
+  }
+  #game-wide {
+    display: none;
+  }
+  :root {
+    min-width: 820px;
+    min-height: 550px;
+    background: url("../img/background.jpg") center no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+  }
+  
+  #gameContainer {
+    min-height: 550px;
+    opacity: 0;
+    transition: opacity 2s;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    --z: 0;
+    height: 100vh;
+    padding: 20px 50px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #gameContainer.visible {
+    opacity: 1;
+  }
+  .notvisible {
+    opacity: 0;
+  }
+  #header {
+    background-color: rgba(145, 114, 73, 0.612);
+    height: 10%;
+    margin: 0 30%;
+    flex-shrink: 1;
+    text-align: center;
+    padding: 10px 5px;
+    border: solid black 3px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  h1 {
+    font-size: 160%;
+    margin: 0;
+    color: rgb(34, 23, 4);
+  }
+  #container {
+    margin-top: 60px;
+    flex-shrink: 1;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  #right,
+  #left {
+    margin: 5px;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+    border: rgba(13, 76, 2, 0.66) dotted 4px;
+    box-shadow: 0px 10px 8px black;
+    background: url("../img/bricks.jpg");
+  
+    background-size: contain;
+  }
+  #center {
+    box-shadow: 0px 10px 8px black;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background: url("../img/battle.jpg") no-repeat center;
+    background-size: cover;
+    border-radius: 20px;
+    margin: 0px 20px;
+  }
+  #scoreboard {
+    height: 15%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  #score {
+    height: 85%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 5px;
+    align-items: center;
+    justify-items: center;
+    border-radius: 5px;
+    border: solid rgb(66, 44, 3);
+  }
+  #score > p {
+    height: 70%;
+    margin: 0;
+    font-size: 180%;
+  }
+  #score > span {
+    height: 30%;
+    font-size: 90%;
+    font-weight: bold;
+  }
+  #pRound {
+    height: 70%;
+    font-size: 180%;
+  }
+  
+  #game {
+    margin: 8px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(30, 15, 3, 0.428);
+    height: 70%;
+  
+    border-radius: 4px;
+    box-shadow: rgb(255, 81, 0) 0 0 20px;
+  }
+  #pcPlay,
+  #userPlay {
+    margin: 5px;
+    width: 50%;
+  }
+  #round {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 20%;
+    background-color: white;
+    border: solid rgb(66, 44, 3);
+  }
+  #round span {
+    font-size: 90%;
+    font-weight: bold;
+  }
+  #comment {
+    margin: 5px;
+    padding: 2% 5px;
+    height: 15%;
+    background-color: rgb(150, 115, 70);
+    border-radius: 20px;
+    border: solid black;
+  }
+  #pComment {
+    margin: 0;
+    font-size: 140%;
+    text-align: center;
+  }
+  #uRock,
+  #pRock {
+    background: url("../img/rock.png") center no-repeat;
+    background-size: contain;
+  }
+  #uPaper,
+  #pPaper {
+    background: url("../img/paper.png") center no-repeat;
+    background-size: contain;
+  }
+  #uScissors,
+  #pScissors {
+    background: url("../img/scissors.png") center no-repeat;
+    background-size: contain;
+  }
+  .playable img {
+    position: sticky;
+    height: 70px;
+    width: 70px;
+    z-index: -10;
+    margin: 0 auto;
+  }
+  .playable {
+    margin: 5px;
+    height: 30%;
+    width: 75%;
+  
+    border-radius: 10px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 1s;
+  }
+  .playable.user:hover {
+    box-shadow: 0 0 30px rgb(126, 2, 2);
+  }
+  .playAnim {
+    position: relative;
+    animation-name: played;
+    animation-duration: 1s;
+  }
+  .playAnim#uRock {
+    --top: 33%;
+    --right: null;
+    --bottom: null;
+    --left: 180%;
+    left: 0px;
+    top: 0px;
+  }
+  .playAnim#uPaper {
+    --top: null;
+    --right: null;
+    --bottom: null;
+    --left: 180%;
+    left: 0px;
+  }
+  .playAnim#uScissors {
+    --top: null;
+    --right: null;
+    --bottom: 33%;
+    --left: 180%;
+    left: 0px;
+    bottom: 0px;
+  }
+  
+  .playAnim#pRock {
+    --top: 33%;
+    --right: 180%;
+    --bottom: null;
+    --left: null;
+    right: 0px;
+    top: 0px;
+  }
+  .playAnim#pPaper {
+    --top: null;
+    --right: 180%;
+    --bottom: null;
+    --left: null;
+    right: 0px;
+  }
+  
+  .playAnim#pScissors {
+    --top: null;
+    --right: 180%;
+    --bottom: 33%;
+    --left: null;
+    right: 0px;
+    bottom: 0px;
+  }
+  .winner {
+    transition: background-color 1s;
+    background-color: rgba(0, 255, 0, 0.394);
+  }
+  .loser {
+    transition: background-color 1s;
+    background-color: rgba(255, 0, 0, 0.408);
+  }
+  
+  @keyframes played {
+    50% {
+      top: var(--top);
+      right: var(--right);
+      bottom: var(--bottom);
+      left: var(--left);
+    }
+    85% {
+      top: var(--top);
+      right: var(--right);
+      bottom: var(--bottom);
+      left: var(--left);
+    }
+  }
+  /* @media screen and (max-width: 900px) and (max-height: 1030px) {
+    #container,
+    #creator {
+      margin: 10px auto;
+    }
+    #game-start,
+    #game-over {
+    }
+    #gameContainer {
+      margin-top: 200px;
+      height: 60vh;
+      padding: 5px 10px;
+      min-width: unset;
+      min-height: unset;
+    }
+    :root {
+      min-width: unset;
+      min-height: unset;
+      height: 90vh;
+    }
+  } */
+  @media screen and (max-width: 900px) {
+    #container,
+    #creator {
+      zoom: 0.6;
+      margin: 10px auto;
+    }
+    #gs-pop,
+    #go-pop {
+      padding: 10px 5px;
+    }
+    #gs-pop-down,
+    #go-pop-dowm {
+      margin-top: 5px;
+    }
+    #game-start,
+    #game-over {
+      zoom: 0.75;
+    }
+    button {
+      zoom: 0.8;
+    }
+    #gameContainer {
+      padding: 5px 10px;
+      min-width: unset;
+      min-height: unset;
+    }
+    :root {
+      min-width: unset;
+      min-height: unset;
+      height: 100vh;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    #game-wide {
+      top: 0;
+      left: 0;
+      position: absolute;
+      display: unset;
+      height: 100vh;
+      width: 100vw;
+      font-size: 60px;
+      text-align: center;
+      z-index: 4;
+      background: white;
+    }
+    #game-wide p {
+      margin-top: 200px;
+    }
+  }
